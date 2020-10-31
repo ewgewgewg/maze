@@ -2,9 +2,9 @@
   "name": "a",
   "version": "1.0.0",
   "description": "",
-  "main": "test.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node test.js",
+    "start": "node index.js",
     "lint": "eslint --fix . && echo 'Lint complete.'"
   },
   "keywords": [],
