@@ -1,5 +1,17 @@
+const _ = require("lodash");
+
 const movement = (direction, unit) => {
-  switch (direction) {
+  let realDirection = direction;
+  if (direction.toUpperCase() === "RANDOM") {
+    let options = [];
+    if (unit[1] < 4) options.push("RIGHT");
+    if (unit[1] > 0) options.push("LEFT");
+    if (unit[0] < 4) options.push("DOWN");
+    if (unit[0] > 0) options.push("UP");
+    realDirection = _.sample(options);
+  }
+
+  switch (realDirection) {
     case "RIGHT":
       return [unit[0], Math.min(unit[1] + 1, 4)];
     case "LEFT":

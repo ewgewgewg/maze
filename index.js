@@ -13,7 +13,8 @@ while (welcome !== "ENTER") {
 }
 
 const dungeon = [[], [], [], [], []].map((a) => ["x", "x", "x", "x", "x"]);
-let playerLocation = [0, 0], monster = [4, 0];
+let playerLocation = [0, 0],
+  monster = [4, 0];
 
 while (
   (playerLocation[0] !== monster[0] || playerLocation[1] !== monster[1]) &&
@@ -26,8 +27,8 @@ while (
   let playerDirection = prompt("LEFT, RIGHT, DOWN, OR UP? ");
   playerDirection = aliasFunction(playerDirection);
   playerLocation = movement(playerDirection, playerLocation);
-  let monsterDirection = _.sample(["LEFT", "RIGHT", "DOWN", "UP"]);
-  monster = movement(monsterDirection, monster);
+  //let monsterDirection = _.sample(["LEFT", "RIGHT", "DOWN", "UP"]);
+  monster = movement("RANDOM", monster);
 }
 
 const map = _.cloneDeep(dungeon);
