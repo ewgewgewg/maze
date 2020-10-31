@@ -32,21 +32,26 @@ while (welcome !== "ENTER") {
 }
 
 const dungeon = [[], [], [], [], []].map((a) => ["x", "x", "x", "x", "x"]);
-let location = [0, 0];
+let playerLocation = [0, 0];
 let monster = [4, 0];
 
 while (
-  (location[0] !== monster[0] || location[1] !== monster[1]) &&
-  (location[0] !== 4 || location[1] !== 4)
+  (playerLocation[0] !== monster[0] || playerLocation[1] !== monster[1]) &&
+  (playerLocation[0] !== 4 || playerLocation[1] !== 4)
 ) {
   const map = _.cloneDeep(dungeon);
-  map[location[0]][location[1]] = "o";
+  map[playerLocation[0]][playerLocation[1]] = "o";
   map[monster[0]][monster[1]] = "m";
   console.log(map);
-  let direction = prompt("LEFT, RIGHT, DOWN, OR UP? ").toUpperCase();
-  movement(direction, location);
+  let playerDirection = prompt("LEFT, RIGHT, DOWN, OR UP? ").toUpperCase();
+  movement(playerDirection, playerLocation);
+  let monsterDirection = _.sample(["LEFT", "RIGHT", "DOWN", "UP"]);
+  movement(monsterDirection, monster);
 }
 
-if (JSON.stringify(monster) === JSON.stringify(location))
+if (JSON.stringify(monster) === JSON.stringify(playerLocation)) {
+  const map = _.cloneDeep(dungeon);
+  map[monster[0]][monster[1]] = "m";
+  console.log(map);
   console.log("You have been eaten!");
-else console.log("You have reached the end of the dungeon!");
+} else console.log("You have reached the end of the dungeon!");
